@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Trigger xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>43.0</apiVersion>
+    <description>This trigger updates the Salesforce Lightning Data Table when a new Opportunity is created or updated to open.</description>
+    <isActive>true</isActive>
+    <label>Update Data Table on Opportunity Creation or Update</label>
+    <triggerType>onAfter</triggerType>
+    <type>Opportunity</type>
+    <workflow>false</workflow>
+    <operations>
+        <operation>Create</operation>
+        <operation>Update</operation>
+    </operations>
+    <entities>
+        <entity>Opportunity</entity>
+    </entities>
+    <conditions>
+        <field>StageName</field>
+        <operator>equals</operator>
+        <value>Open</value>
+    </conditions>
+    <actions>
+        <action>
+            <type>LightningDataTable</type>
+            <name>UpdateDataTable</name>
+            <dataTable>DataTableName</dataTable>
+        </action>
+    </actions>
+</Trigger>
